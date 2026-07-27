@@ -6,5 +6,21 @@ const user = db.user;
 
 async function register(req, res) {
     try {
-        const
-    }
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({
+                message: "Email dan Password harus diisi."
+            });
+        }
+        const existingUser = await user.findOne({ 
+            where: { email } 
+        });
+        if (existingUser) {
+            return res.status(400).json({
+                message: "Email sudah terdaftar."
+            });
+        }
+        
+        
+    
