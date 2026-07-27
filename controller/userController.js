@@ -64,4 +64,26 @@ async function login(req, res) {
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
+            return res.status(400).json({
+                message: "Email atau Password salah."
+            });
+        }
+
+        const token = jwt.sign(
+            {
+                id: user.id,
+                email: user.email
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: process.env.JWT_EXPIRES
+            }
+        );
+
+        
+
+            
+        )
     
