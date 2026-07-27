@@ -35,6 +35,16 @@ async function register(req, res) {
                 email: user.email
             }
         });
+
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message
+        });
     }
+}
+
+async function login(req, res) {
+    try {
+        const { email, password } = req.body;
         
     
