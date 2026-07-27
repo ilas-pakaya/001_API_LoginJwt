@@ -62,4 +62,6 @@ async function login(req, res) {
                 message: "Email tidak ditemukan."
             });
         }
+
+        const isMatch = await bcrypt.compare(password, user.password);
     
