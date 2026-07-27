@@ -53,4 +53,13 @@ async function login(req, res) {
             });
         }
         
+        const user = await User.findOne({
+            where: { email }
+        });
+
+        if (!user) {
+            return res.status(400).json({
+                message: "Email tidak ditemukan."
+            });
+        }
     
